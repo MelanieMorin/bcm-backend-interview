@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Surveillance des centrales</h1>
+
+  <!-- formulaire saisie de date -->
+  <mat-form-field appearance="fill">
+    <mat-label>Sélectionner une période</mat-label>
+    <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Start date" />
+      <input matEndDate formControlName="end" placeholder="End date" />
+    </mat-date-range-input>
+    <mat-hint>JJ/MM/AAAA – JJ/MM/AAAA</mat-hint>
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+
+    <mat-error *ngIf="dateRange.controls.start.hasError('matStartDateInvalid')"
+      >Invalid start date</mat-error
+    >
+    <mat-error *ngIf="dateRange.controls.end.hasError('matEndDateInvalid')"
+      >Invalid end date</mat-error
+    >
+  </mat-form-field>
+
+  <!-- liste des centrales -->
+  <power-station
+    *ngFor="let station of powerStations"
+    [station]="station"
+    [from]="dateRange.controls.start.value"
+    [to]="dateRange.controls.end.value"
+  ></power-station>
+</div>

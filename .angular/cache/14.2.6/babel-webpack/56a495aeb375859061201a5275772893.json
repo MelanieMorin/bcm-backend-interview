@@ -1,0 +1,1 @@
+{"ast":null,"code":"export const stations = [{\n  name: 'Hawes',\n  watchStep: 15\n}, {\n  name: 'Barnsley',\n  watchStep: 30\n}, {\n  name: 'Hounslow',\n  watchStep: 60\n}];","map":null,"metadata":{},"sourceType":"module"}
