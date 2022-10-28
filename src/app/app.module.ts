@@ -1,11 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { PowerStationComponent } from './power-station/power-station.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -34,7 +33,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     HttpClientModule,
     MatProgressBarModule,
   ],
-  declarations: [AppComponent, PowerStationComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }],
 })

@@ -1,6 +1,13 @@
 <div class="container">
   <h1>Surveillance des centrales</h1>
 
+  <div class="container">
+    Liste des centrales
+    <li *ngFor="let station of powerStations">
+      {{ station.name }}
+    </li>
+  </div>
+
   <!-- formulaire saisie de date -->
   <mat-form-field appearance="fill">
     <mat-label>Sélectionner une période</mat-label>
@@ -12,19 +19,18 @@
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
 
-    <mat-error *ngIf="dateRange.controls.start.hasError('matStartDateInvalid')"
-      >Invalid start date</mat-error
-    >
-    <mat-error *ngIf="dateRange.controls.end.hasError('matEndDateInvalid')"
-      >Invalid end date</mat-error
-    >
+    <mat-error *ngIf="dateRange.controls.start.hasError('matStartDateInvalid')">Date de début invalide</mat-error>
+    <mat-error *ngIf="dateRange.controls.end.hasError('matEndDateInvalid')">Date de fin invalide</mat-error>
+    <mat-error *ngIf="dateRange.controls.end.value < dateRange.controls.start.value">Plage de dates invalide</mat-error>
   </mat-form-field>
 
-  <!-- liste des centrales -->
-  <power-station
-    *ngFor="let station of powerStations"
-    [station]="station"
-    [from]="dateRange.controls.start.value"
-    [to]="dateRange.controls.end.value"
-  ></power-station>
+  <button mat-button color="primary" (click)="getApiData()" [disabled]="dateRange.invalid">Rapport de
+    production</button>
+  <button mat-button color="accent" (click)="clear()" [disabled]="result.length === 0">Effacer</button>
+
+  <div class="container">
+    <div *ngFor="let line of result">
+      Date : {{ line.datetime | date: 'dd/MM/YYYY hh:mm' }} &bull; Puissance : {{ line.totalPower }}
+    </div>
+  </div>
 </div>

@@ -1,0 +1,11 @@
+{
+    "/api": {
+        "target": "https://interview.beta.bcmenergy.fr",
+        "secure": false,
+        "pathRewrite": {
+            "^/api": ""
+        },
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+}
